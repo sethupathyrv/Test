@@ -101,59 +101,37 @@ void Stack_destroy(Stack *ptr_Stack)
 
 int match_parenthesis(const char* string)
 {
-//TODO - implement the code to match paranthesis in a string which is passed as a parameter.
-    Stack* stack = (Stack*)malloc(sizeof(Stack));
-    Stack_initialize(stack);
-    for(int i=0;i<strlen(string);i++){
-        if(string[i]=='['||string[i]=='{'||string[i]=='('){
-            Stack_push(stack,string[i]);
-            continue;
-        }
-        else if(string[0]==']' ||string[0]==')' ||string[0]=='}' ){
-            Stack_destroy(stack);
-            return 0;
-        }
-        else if(string[i] == ')' || string[i] == ']' || string[i] == '}'){
-            if(string[i]==']'){
-                if((int)Stack_peek(stack)=='['){
-                    Stack_pop(stack);
-                }
-                else{
-                    Stack_destroy(stack);
-                    return 0;
-                }
+    Stack* s=(Stack*) malloc(sizeof(Stack*));
+    Stack_initialize(s);
+    int l=strlen(string);
+    for(int i=0;i<l;i++)
+    {
+        if(string[i]=='{'||string[i]=='('||string[i]=='[')
+            Stack_push(s,(int) string[i]);
+        else if(string[i]=='}'||string[i]==')'||string[i]==']')
+        {
+            if (Stack_is_empty(s))
+            {
+                Stack_destroy(s);
+                return 0;
             }
-            if(string[i]==')'){
-                if((int)Stack_peek(stack)=='('){
-                    Stack_pop(stack);
-                }
-                else{
-                    Stack_destroy(stack);
-                    return 0;
-                }
-            }
-            if(string[i]=='}'){
-                if((int)Stack_peek(stack)=='{'){
-                    Stack_pop(stack);
-                }
-                else{
-                    Stack_destroy(stack);
-                    return 0;
-                }
-            }
+            else if((int)string[i]==Stack_peek(s)+2)
+                Stack_pop(s);
+            else if(string[i]==')' && (char) Stack_peek(s)=='(')
+                Stack_pop(s);
+            else
+            {
+                Stack_destroy(s);
+                return 0;
+            }   
         }
-        
-
     }
-
-    if(stack->ptr_list->number_of_Nodes==0){
-        Stack_destroy(stack);
+    if (Stack_is_empty(s))
+    {
+        Stack_destroy(s);
         return 1;
     }
-    else{
-        return 0;
-    }
-}	
+}		
 
 
  
