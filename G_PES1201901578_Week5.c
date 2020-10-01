@@ -13,6 +13,7 @@ static Node* create_Node(int data, Node* link)
 void list_initialize(List* ptr_list) 
 {
 //TODO - initialize structure members to default values
+	print("pull req\n");
 	ptr_list->head = NULL;
 	ptr_list->number_of_Nodes = 0;
 }
