@@ -104,6 +104,7 @@ int match_parenthesis(const char* string)
     Stack* s=(Stack*) malloc(sizeof(Stack*));
     Stack_initialize(s);
     int l=strlen(string);
+	printf("hello");
     for(int i=0;i<l;i++)
     {
         if(string[i]=='{'||string[i]=='('||string[i]=='[')
