@@ -36,6 +36,7 @@ const int Node_get_data(Node *Node_ptr)
 void list_delete_front(List* ptr_list) 
 {
 //TODO - perform linked list implementation of pop operation.
+	printf("Hello world");
     if (ptr_list->head != NULL)
 	{
 	    struct Node* del = ptr_list->head;
